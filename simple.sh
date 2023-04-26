@@ -10,7 +10,7 @@ if ! [ $(id -u) = 0 ]; then
 fi
 
 echo "Updating the system"
-#sudo apt update -y
+sudo apt update -y
 
 echo "Installing Web Server, Database service & Dependencies"
 sudo apt install nginx php mysql-server -y
