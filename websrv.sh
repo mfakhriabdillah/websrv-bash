@@ -6,13 +6,13 @@
 function isUserRoot () {
     if ! [ $(id -u) = 0 ]; then
    echo "The script need to be run as root." >&2
-   echo "The syntax must be 'sudo ./run.sh' "
+   echo "The syntax must be 'sudo ./websrv.sh' "
    exit 1
 fi
 }
 
 function gettingInformation (){
-    echo "Enter your domain name"
+    echo "Enter your domain name:"
     read domainName
 }
 
@@ -24,7 +24,7 @@ function installDependencies () {
 }
 
 function getSourceRepo () {
-    echo "Please input Github repository:"
+    echo "Please enter your source code (GitHub repository)"
     read repoSource
     echo "Cloning from $repoSource..."
     git clone $repoSource
@@ -37,12 +37,10 @@ function copySourceCode () {
 
 function createNginxConfigFile () {
     sudo touch /etc/nginx/sites-available/$domainName
-    touch ./$domainName
 }
 
 function configureNginxFile () {
     cat > /etc/nginx/sites-available/$domainName << EOF
-    #cat > ./$domainName << EOF
     server {
 	listen 80;
 	listen [::]:80;
